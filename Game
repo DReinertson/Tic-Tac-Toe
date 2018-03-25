@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+  #all{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: tan;
+  }
+
+  #flexbox{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: gray;
+    width: 60vw;
+    padding: 1vw;  
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .play{
+    background-color: white;
+    width: 19vw;
+    flex-wrap: wrap;
+    border: solid black 1px;
+    height: 19vw;
+  }
+
+  #title{
+    display: flex;
+    width: 57vw;
+    border: none;
+    font-size: 8vw;
+    justify-content: center;
+    text-align: center;
+    padding: 2vw;
+  }
+</style>
+</head>
+<body>
+<div class = "flex-container" id = 'all'>
+<div class = "flex-container" id = 'flexbox'>
+  <div class = "flex-item" id = "title">
+    <div class = "title">Tic-Tac-Toe</div>
+  </div>
+  <div class = "flex-item play" id = "top-left">1</div>
+  <div class = "flex-item play" id = "top-mid">2</div>
+  <div class = "flex-item play" id = "top-right">3</div>
+  <div class = "flex-item play" id = "mid-left">4</div>
+  <div class = "flex-item play" id = "mid-mid">5</div>
+  <div class = "flex-item play" id = "mid-right">6</div>
+  <div class = "flex-item play" id = "bot-left">7</div>
+  <div class = "flex-item play" id = "bot-mid">8</div>
+  <div class = "flex-item play" id = "bot-right">9</div>
+</div>
+</div>
+</body>
+</html>
+
