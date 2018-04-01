@@ -14,7 +14,52 @@
   align-items: center;
 }
 
+.overlay{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: black;
+  position: absolute;
+  color: white;
+  display:flex;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 6vw;
+}
+#player-choice{
+}
+.letter-overlay{
+  text-align: center;
+  display: flex;
+  position: absolute;
+  background-color: black;
+  color: white;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 11;
+}
+.letter-choice-title{
+  font-size: 8vw;
+  margin: 1vw;
+  background-color: green;
+}
+.letter-choice{
+  font-size: 8vw;
+  margin: 0 auto auto auto;
+  background-color: green;
+  
+}
+
 #flexbox{
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   background-color: gray;
@@ -49,7 +94,7 @@
   display: flex;
   flex-wrap: wrap;
   background-color: gray;
-  width: 40vw;
+  width: 35vw;
   padding: 1vw;  
   justify-content: center;
   align-items: center;
@@ -58,28 +103,36 @@
 
 .play{
   background-color: white;
-  width: 13vw;
+  width: 11vw;
   flex-wrap: wrap;
   border: solid black 1px;
-  height: 13vw;
+  height: 11vw;
 }
 
 #title{
   display: flex;
-  width: 39vw;
+  width: 35vw;
   border: none;
   font-size: 2vw;
   justify-content: center;
   text-align: center;
   padding: 1vw;
 }
-  
-}
+
 </style>
 </head>
 <body>
 <div class = "flex-container" id = 'all'>
 <div class = "flex-container" id = 'flexbox'>
+  <div class = "overlay">
+    <div class = 'player-choice' id = 'player-choice'>1 Player</div>
+    <div class = 'player-choice' id = 'player-choice'>2 Player</div>
+  </div>
+  <div class = "letter-overlay">
+    <div class = "letter-choice-title">Choose Your Letter</div>
+    <div class = "letter-choice" id = "letter-choice">X</div>
+    <div class = "letter-choice" id = "letter-choice">O</div>
+  </div>
   <div class = "flex-item" id = "title">
     <div class = "title">Tic-Tac-Toe</div>
   </div>
