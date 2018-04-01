@@ -147,6 +147,27 @@
   <div class = "flex-item play" id = "bot-right">9</div>
 </div>
 </div>
+
+<script>
+var player;
+var opponent;
+
+
+$('.player-choice').on("click touchend", function(){
+  $(".overlay").hide();
+})
+$('.letter-choice').on("click touchend", function(){
+  $(".letter-overlay").hide();
+})
+
+
+$('.play').on("click touchend", function(){
+  console.log('div clicked');
+  console.log(this.id);
+  console.log(document.getElementById(this.id).innerHTML);
+  document.getElementById(this.id).innerHTML = "X";
+})
+</script>
 </body>
 </html>
 
