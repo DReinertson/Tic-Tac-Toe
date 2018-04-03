@@ -29,7 +29,9 @@
   bottom: 0;
   font-size: 6vw;
 }
-#player-choice{
+.player-choice{
+  font-size: 6vw;
+  color: white;
 }
 .letter-overlay{
   text-align: center;
@@ -44,18 +46,21 @@
   bottom: 0;
   right: 0;
   left: 0;
-  z-index: 11;
+  z-index: 9;
 }
 .letter-choice-title{
   font-size: 8vw;
   margin: 1vw;
-  background-color: green;
 }
 .letter-choice{
+  color: white;
   font-size: 8vw;
   margin: 0 auto auto auto;
-  background-color: green;
-  
+  }
+button{
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 #flexbox{
@@ -100,6 +105,16 @@
   align-items: center;
   
 }
+  
+  .player-choice{
+    font-size: 4vw;
+  }
+  .letter-choice-title{
+    font-size: 5vw;
+  }
+  .letter-choice{
+    font-size: 5vw;
+  }
 
 .play{
   background-color: white;
@@ -118,7 +133,8 @@
   text-align: center;
   padding: 1vw;
 }
-
+  
+}
 </style>
 </head>
 <body>
@@ -158,6 +174,7 @@
 
 var player = new Object();
 var opponent = new Object();
+var turn;
 
 
 $('.player-choice').on("click touchend", function(){
@@ -187,12 +204,14 @@ $('.letter-choice').on("click touchend", function(){
   })
   
 
-
 $('.play').on("click touchend", function(){
   console.log('div clicked');
   console.log(this.id);
   console.log(document.getElementById(this.id).innerHTML);
-  document.getElementById(this.id).innerHTML = "X";
+  if (turn == "player"){    document.getElementById(this.id).innerHTML = player.letter;
+  }
+  else{    document.getElementById(this.id).innerHTML = opponent.letter;
+  }
 })
 </script>
 </body>
