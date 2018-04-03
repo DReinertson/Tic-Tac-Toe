@@ -149,16 +149,43 @@
 </div>
 
 <script>
-var player;
-var opponent;
+//The easiest way would be to choose a spot at random. Gather available spaces and choose it at random, using a grid system, posting in [x,y] coordinates. 
+//Need to make a couple different methods: 
+//1. play method: where if it is your turn, if you click in one of the play divs, it puts the appropriate character in it. 
+//2. check method: Checks to see if there are three in a row, if so, game over and that play wins. Will use selector.each() function to check each div, will need to figure out most effective way to check if divs are side-by-side (i.e. can make 3 in a row).
+//3. Will need to make a couple different objects? Player 1/2 and computer. Can use while loop to check who's turn it is. Not allowing player 1 moving while computer is about to play for exampler. 
+// Will use selector.each() function to check each
+
+var player = new Object();
+var opponent = new Object();
 
 
 $('.player-choice').on("click touchend", function(){
   $(".overlay").hide();
+  if (this.id == "1-player"){
+    player.name = "player";
+    opponent.name = "computer";
+  }
+  if (this.id == "2-player"){
+    player.name = 'player-1';
+    opponent.name = 'player-2'
+  }  
 })
+
 $('.letter-choice').on("click touchend", function(){
   $(".letter-overlay").hide();
-})
+  console.log(this.id);
+  player.letter = this.id;
+  if (this.id == 'X'){
+    opponent.letter = 'O';
+  }
+  else {
+    opponent.letter = 'X';
+  }
+  console.log('player:', player);
+  console.log('opponent:', opponent);
+  })
+  
 
 
 $('.play').on("click touchend", function(){
