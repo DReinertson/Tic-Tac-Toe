@@ -222,15 +222,18 @@ function playerTurn(){
       document.getElementById(this.id).innerHTML = opponent.letter;
     }
     //switch turns
-    if (turn == 'player'){
-      turn = 'opponent';
-    }
-    else {
-      turn = 'player'
-    }
-    opponentTurn();
+    console.log(turn, "switching turns")
+    turn = "opponent";
+    console.log(turn, "turn switched");
   })
+  console.log("out of div click, checking turn", turn);
+  if (turn == "opponent"){
+    console.log("running opponentTurn");
+    opponentTurn();
+  }
 }
+
+//Currently stacking calls after first div click. After first click, will try to change div multiple times. 
 
 function opponentTurn(){
   //Will run check here
@@ -239,8 +242,22 @@ function opponentTurn(){
     console.log("Computer choosing space");
   }
   else{
-    playerTurn();
-    
+    $('.play').on("click touchend", function(){
+    console.log('div clicked');
+    console.log(this.id);
+    console.log(document.getElementById(this.id).innerHTML);
+    if (turn == "player"){
+      document.getElementById(this.id).innerHTML = player.letter;
+    }
+    else{
+      document.getElementById(this.id).innerHTML = opponent.letter;
+    }
+      console.log(turn, "switching turns in opponentTurn");
+    turn = "player";
+  })
+}
+  if (turn == "player"){
+  playerTurn();
   }
 }
 </script>
