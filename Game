@@ -174,7 +174,7 @@ button{
 
 var player = new Object();
 var opponent = new Object();
-var turn;
+var turn = 'player';
 
 
 $('.player-choice').on("click touchend", function(){
@@ -203,16 +203,46 @@ $('.letter-choice').on("click touchend", function(){
   console.log('opponent:', opponent);
   })
   
+playerTurn();
 
-$('.play').on("click touchend", function(){
-  console.log('div clicked');
-  console.log(this.id);
-  console.log(document.getElementById(this.id).innerHTML);
-  if (turn == "player"){    document.getElementById(this.id).innerHTML = player.letter;
+
+
+
+function playerTurn(){
+  //Will run check before moves occur.
+  
+  $('.play').on("click touchend", function(){
+    console.log('div clicked');
+    console.log(this.id);
+    console.log(document.getElementById(this.id).innerHTML);
+    if (turn == "player"){
+      document.getElementById(this.id).innerHTML = player.letter;
+    }
+    else{
+      document.getElementById(this.id).innerHTML = opponent.letter;
+    }
+    //switch turns
+    if (turn == 'player'){
+      turn = 'opponent';
+    }
+    else {
+      turn = 'player'
+    }
+    opponentTurn();
+  })
+}
+
+function opponentTurn(){
+  //Will run check here
+  if (opponent.name == "computer"){
+    //Will run random movement
+    console.log("Computer choosing space");
   }
-  else{    document.getElementById(this.id).innerHTML = opponent.letter;
+  else{
+    playerTurn();
+    
   }
-})
+}
 </script>
 </body>
 </html>
