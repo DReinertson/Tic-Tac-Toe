@@ -251,6 +251,13 @@ $('.letter-choice').on("click touchend", function(){
 
 function computerTurn(){
   console.log('computer making a move');
+  //produce random integer that will be used to make computer's move on board. 
+  var move = available[Math.floor(Math.random() * available.length)]
+  console.log('move:', move);
+  document.getElementById(move).innerHTML = opponent.letter;
+  removeIndex(move);
+  turn = "player";
+  return;
 }
 
 function removeIndex(divId){
