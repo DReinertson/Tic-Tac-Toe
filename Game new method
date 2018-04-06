@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+  html{
+  background-color: tan;
+}
+
+#all{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: black;
+  position: absolute;
+  color: white;
+  display:flex;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 6vw;
+}
+.player-choice{
+  font-size: 6vw;
+  color: white;
+}
+.letter-overlay{
+  text-align: center;
+  display: flex;
+  position: absolute;
+  background-color: black;
+  color: white;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 9;
+}
+.letter-choice-title{
+  font-size: 8vw;
+  margin: 1vw;
+}
+.letter-choice{
+  color: white;
+  font-size: 8vw;
+  margin: 0 auto auto auto;
+  }
+button{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+#flexbox{
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: gray;
+  width: 60vw;
+  padding: 1vw;  
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.play{
+  background-color: white;
+  width: 19vw;
+  flex-wrap: wrap;
+  border: solid black 1px;
+  height: 19vw;
+}
+
+#title{
+  display: flex;
+  width: 57vw;
+  border: none;
+  font-size: 5vw;
+  justify-content: center;
+  text-align: center;
+  padding: 2vw;
+}
+
+@media screen and (min-width: 1100px) {
+  
+  #flexbox{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: gray;
+  width: 35vw;
+  padding: 1vw;  
+  justify-content: center;
+  align-items: center;
+  
+}
+  
+  .player-choice{
+    font-size: 4vw;
+  }
+  .letter-choice-title{
+    font-size: 5vw;
+  }
+  .letter-choice{
+    font-size: 5vw;
+  }
+
+.play{
+  background-color: white;
+  width: 11vw;
+  flex-wrap: wrap;
+  border: solid black 1px;
+  height: 11vw;
+}
+
+#title{
+  display: flex;
+  width: 35vw;
+  border: none;
+  font-size: 2vw;
+  justify-content: center;
+  text-align: center;
+  padding: 1vw;
+}
+  
+}
+</style>
+</head>
+<body>
+<div class = "flex-container" id = 'all'>
+<div class = "flex-container" id = 'flexbox'>
+  <div class = "overlay">
+    <div class = 'player-choice' id = 'player-choice'>1 Player</div>
+    <div class = 'player-choice' id = 'player-choice'>2 Player</div>
+  </div>
+  <div class = "letter-overlay">
+    <div class = "letter-choice-title">Choose Your Letter</div>
+    <div class = "letter-choice" id = "letter-choice">X</div>
+    <div class = "letter-choice" id = "letter-choice">O</div>
+  </div>
+  <div class = "flex-item" id = "title">
+    <div class = "title">Tic-Tac-Toe</div>
+  </div>
+  <div class = "flex-item play" id = "top-left">1</div>
+  <div class = "flex-item play" id = "top-mid">2</div>
+  <div class = "flex-item play" id = "top-right">3</div>
+  <div class = "flex-item play" id = "mid-left">4</div>
+  <div class = "flex-item play" id = "mid-mid">5</div>
+  <div class = "flex-item play" id = "mid-right">6</div>
+  <div class = "flex-item play" id = "bot-left">7</div>
+  <div class = "flex-item play" id = "bot-mid">8</div>
+  <div class = "flex-item play" id = "bot-right">9</div>
+</div>
+</div>
+<script>
+//The easiest way would be to choose a spot at random. Gather available spaces and choose it at random, using a grid system, posting in [x,y] coordinates. 
+//Need to make a couple different methods: 
+//1. play method: where if it is your turn, if you click in one of the play divs, it puts the appropriate character in it. 
+//2. check method: Checks to see if there are three in a row, if so, game over and that play wins. Will use selector.each() function to check each div, will need to figure out most effective way to check if divs are side-by-side (i.e. can make 3 in a row).
+//3. Will need to make a couple different objects? Player 1/2 and computer. Can use while loop to check who's turn it is. Not allowing player 1 moving while computer is about to play for exampler. 
+// Will use selector.each() function to check each
+
+var player = new Object();
+var opponent = new Object();
+var turn = 'player';
+
+//Will choose how many players via button click
+$('.player-choice').on("click touchend", function(){
+  $(".overlay").hide();
+  if (this.id == "1-player"){
+    player.name = "player";
+    opponent.name = "computer";
+  }
+  if (this.id == "2-player"){
+    player.name = 'player-1';
+    opponent.name = 'player-2'
+  }  
+})
+
+//Will choose which letter between X and O
+$('.letter-choice').on("click touchend", function(){
+  $(".letter-overlay").hide();
+  console.log(this.id);
+  player.letter = this.id;
+  if (this.id == 'X'){
+    opponent.letter = 'O';
+  }
+  else {
+    opponent.letter = 'X';
+  }
+  console.log('player:', player);
+  console.log('opponent:', opponent);
+  })
+  
+
+
+
+
+
+  //Will run check before moves occur.
+  
+  $('.play').on("click touchend", function(){
+    if (document.getElementById(this.id).innerHTML == "X" || document.getElementById(this.id).innerHTML == "O"){
+      console.log("try again");
+      return;
+    }
+    console.log('div clicked');
+    console.log(this.id);
+    console.log(document.getElementById(this.id).innerHTML);
+    console.log("turn:", turn);
+    
+    if (turn == "player"){
+      //Will need to implement a check if field already has letter in it and prevent overwrite of letter. 
+      console.log("playing player letter", player.letter);
+      document.getElementById(this.id).innerHTML = player.letter;
+      turn = "opponent";
+      console.log('turn changed from player', turn);
+      if (opponent.name == "computer"){
+        //computerTurn() will have the letter placement and switch turn back to player within it. Will also check field to see if 3 in a row.
+        computerTurn();
+        return;
+      }
+      return;
+    }
+    if (turn == "opponent" && opponent.name == "player-2"){
+      console.log('playing Opponent letter', opponent.letter);
+      document.getElementById(this.id).innerHTML = opponent.letter;
+      turn = 'player';
+      console.log('turn changed from opponent', turn);
+      return;
+    }
+    //will run check here, after 
+  })
+</script>
+</body>
+</html>
