@@ -176,6 +176,8 @@ var opponent = new Object();
 var turn = 'player';
 var available = ["top-left", "top-mid", "top-right", "mid-left", "mid-mid", "mid-right", "bot-left", "bot-mid", "bot-right"];
 
+var winning = [["top-left", "top-mid", "top-right"], ["top-left", "mid-left", "bot-left"], ["top-left", "mid-mid", "bot-right"], ["top-mid", "mid-mid", "bot-mid"], ["top-right", "mid-mid", "bot-left"], ["top-right", "mid-right", "bot-right"], ["mid-left", "mid-mid", "mid-right"], ["bot-left", "bot-mid", "bot-right"]];
+
 //Will choose how many players via button click
 $('.player-choice').on("click touchend", function(){
   $(".overlay").hide();
@@ -262,6 +264,10 @@ function computerTurn(){
 
 function removeIndex(divId){
   available.splice((available.indexOf(divId)), 1);  
+}
+
+function check(playerArray){
+  
 }
 </script>
 </body>
