@@ -268,6 +268,39 @@ function removeIndex(divId){
 
 function check(playerArray){
   
+  //Could have nested for loops, to check within each array that's nested in the "winning" array. Would be n^2
+  //Could create IDs that have grid coordinates and use that to check if adjecent squares are filled? But how to change DIV id to adjecent square?
+  //For non-diagonals, could check player/opponent array for keywords (top, left, bot, right, mid), if there are 3 of them in the array, then win. Not sure how to check for diagonals in this case. Seems inefficient to have a rule for checking horizontals/verticals and a separate for diagonals. 
+  //In terms of key-words, could just have a counter for keywords as space is chosen? If counter gets to 3, player/opponent wins? For diagonal, if each counter has 1, check to see if it's proper diagonal and not top-left, mid-right, bot-mid, for example. Create switch-case for each one to add to player/opponent.counter?
+  
+}
+
+function addCounter(divId, object){
+  switch(divId){
+    case 'top-left':
+      object.counter.top += 1;
+      object.counter.left += 1;
+      break;
+    case 'top-mid':
+      object.counter.top += 1;
+      object.counter.midy += 1;
+      break;
+    case 'top-right':
+      object.counter.top += 1;
+      object.counter.right += 1;
+      break;
+    case 'mid-left':
+      object.counter.midx += 1;
+      object.counter.left += 1;
+      break;
+    case 'mid-mid':
+      object.counter.midx += 1;
+      object.counter.midy += 1;
+      break;
+    case 'mid-right':
+      object.counter.midx += 1;
+      object.counter.right += 1;
+  }
 }
 </script>
 </body>
