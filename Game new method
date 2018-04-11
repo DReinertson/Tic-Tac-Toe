@@ -188,7 +188,8 @@ button{
   <div class = "flex-item play" id = "bot-right">9</div>
 </div>
 </div>
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type = "text/javascript">
 //The easiest way would be to choose a spot at random. Gather available spaces and choose it at random, using a grid system, posting in [x,y] coordinates. 
 //Need to make a couple different methods: 
 //1. play method: where if it is your turn, if you click in one of the play divs, it puts the appropriate character in it. 
