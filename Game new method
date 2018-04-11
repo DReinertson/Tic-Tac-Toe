@@ -269,8 +269,9 @@ function computerTurn(){
   var move = available[Math.floor(Math.random() * available.length)]
   console.log('move:', move);
   document.getElementById(move).innerHTML = opponent.letter;
-  addCounter(this.id, opponent);
+  addCounter(move, opponent);
   removeIndex(move);
+  console.log('computer:', opponent);
   turn = "player";
   return;
 }
