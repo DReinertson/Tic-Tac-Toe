@@ -210,6 +210,7 @@ $('.win-overlay').hide();
 
 
 
+
 //Will choose how many players via button click
 $('.player-choice').on("click touchend", function(){
   $(".overlay").hide();
@@ -260,8 +261,14 @@ $('.letter-choice').on("click touchend", function(){
       removeIndex(this.id);
       addCounter(this.id, player);
       check(player);
+      console.log('available:', available);
+      if (available.length == 0){
+        console.log('tie-game!');
+  document.getElementById('win').innerHTML = "Tie Game";
+  $(".win-overlay").show();
+        return;
+}
       turn = "opponent";
-      console.log("player:", player);
       if (opponent.name == "Computer"){
         //computerTurn() will have the letter placement and switch turn back to player within it. Will also check field to see if 3 in a row.
         computerTurn();
@@ -270,22 +277,29 @@ $('.letter-choice').on("click touchend", function(){
       return;
     }
     if (turn == "opponent" && opponent.name == "Player-2"){
-      console.log('playing Opponent letter', opponent.letter);
+      //console.log('playing Opponent letter', opponent.letter);
       document.getElementById(this.id).innerHTML = opponent.letter;
       addCounter(this.id, opponent);
       check(opponent);
       removeIndex(this.id);
-      console.log('available after opponent:', available);
-      console.log('opponent:', opponent);
+      console.log('available:', available)
+      if (available.length == 0){
+        console.log("tie-game!");
+        document.getElementById('win').innerHTML = "Tie Game";
+        $(".win-overlay").show();
+        return;
+}
+      //console.log('available after opponent:', available);
+      //console.log('opponent:', opponent);
       turn = 'player';
-      console.log('turn changed from opponent', turn);
+      //console.log('turn changed from opponent', turn);
       return;
     }
     //will run check here, after 
   })
 
 function computerTurn(){
-  console.log('computer making a move');
+  //console.log('computer making a move');
   //produce random integer that will be used to make computer's move on board. 
   var move = available[Math.floor(Math.random() * available.length)]
   console.log('move:', move);
@@ -293,6 +307,13 @@ function computerTurn(){
   addCounter(move, opponent);
   check(opponent);
   removeIndex(move);
+  console.log('available:', available);
+  if (available.length == 0){
+    console.log('tie-game!');
+  document.getElementById('win').innerHTML = "Tie Game";
+  $(".win-overlay").show();
+    return;
+}
   console.log('computer:', opponent);
   turn = "player";
   return;
@@ -307,9 +328,9 @@ function check(participant){
   console.log("checking", participant);
   //Will loop through counter object within player/opponent. If any counter is equal to 3, will end game and create overlay that says who won. Overlay will include way to reset. 
   for (var x in participant.counter){
-    console.log("x:", participant.counter[x]);
+    //console.log("x:", participant.counter[x]);
     if (participant.counter[x] == 3){
-      console.log("someone won");
+      //console.log("someone won");
       document.getElementById('win').innerHTML = (participant.name + " " + "has won!");
       $('.win-overlay').show();
       break;
@@ -321,7 +342,7 @@ function check(participant){
 
 
 function addCounter(divId, object){
-  console.log('divId:', divId, 'object:', object);
+  //console.log('divId:', divId, 'object:', object);
   switch(divId){
     case 'top-left':
       object.counter.top += 1;
