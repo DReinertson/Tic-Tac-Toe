@@ -168,27 +168,20 @@ button{
 //Need to make a couple different methods: 
 //1. play method: where if it is your turn, if you click in one of the play divs, it puts the appropriate character in it. 
 //2. check method: Checks to see if there are three in a row, if so, game over and that play wins. Will use selector.each() function to check each div, will need to figure out most effective way to check if divs are side-by-side (i.e. can make 3 in a row).
+  //Check method will go right after move is played, if there is 3 in one of the counters, before player switch
 //3. Will need to make a couple different objects? Player 1/2 and computer. Can use while loop to check who's turn it is. Not allowing player 1 moving while computer is about to play for exampler. 
 // Will use selector.each() function to check each
 
 var player = new Object();
-player.counterTop = 0;
-player.counterMidx = 0;
-player.counterMidy = 0;
-player.counterBot = 0;
-player.counterLeft = 0;
-player.counterRight = 0;
+player.counter = {top : 0, midx: 0, midy: 0, bot: 0, left: 0, right: 0}
+
 var opponent = new Object();
-opponent.counterTop = 0;
-opponent.counterMidx = 0;
-opponent.counterMidy = 0;
-opponent.counterBot = 0;
-opponent.counterLeft = 0;
-opponent.counterRight = 0;
+opponent.counter = {top : 0, midx: 0, midy: 0, bot: 0, left: 0, right: 0}
+
 var turn = 'player';
 var available = ["top-left", "top-mid", "top-right", "mid-left", "mid-mid", "mid-right", "bot-left", "bot-mid", "bot-right"];
 
-var winning = [["top-left", "top-mid", "top-right"], ["top-left", "mid-left", "bot-left"], ["top-left", "mid-mid", "bot-right"], ["top-mid", "mid-mid", "bot-mid"], ["top-right", "mid-mid", "bot-left"], ["top-right", "mid-right", "bot-right"], ["mid-left", "mid-mid", "mid-right"], ["bot-left", "bot-mid", "bot-right"]];
+
 
 //Will choose how many players via button click
 $('.player-choice').on("click touchend", function(){
@@ -239,7 +232,7 @@ $('.letter-choice').on("click touchend", function(){
       document.getElementById(this.id).innerHTML = player.letter;
       removeIndex(this.id);
       addCounter(this.id, player);
-      console.log('available:', available);
+      check(player);
       turn = "opponent";
       console.log("player:", player);
       if (opponent.name == "computer"){
@@ -253,6 +246,7 @@ $('.letter-choice').on("click touchend", function(){
       console.log('playing Opponent letter', opponent.letter);
       document.getElementById(this.id).innerHTML = opponent.letter;
       addCounter(this.id, opponent);
+      check(opponent);
       removeIndex(this.id);
       console.log('available after opponent:', available);
       console.log('opponent:', opponent);
@@ -270,6 +264,7 @@ function computerTurn(){
   console.log('move:', move);
   document.getElementById(move).innerHTML = opponent.letter;
   addCounter(move, opponent);
+  check(opponent);
   removeIndex(move);
   console.log('computer:', opponent);
   turn = "player";
@@ -280,53 +275,60 @@ function removeIndex(divId){
   available.splice((available.indexOf(divId)), 1);  
 }
 
-function check(playerArray){
+//participant will equal player or opponent, depending on the turn
+function check(participant){
+  console.log("checking", participant);
+  //Will loop through counter object within player/opponent. If any counter is equal to 3, will end game and create overlay that says who won. Overlay will include way to reset. 
+  for (var x in participant.counter){
+    console.log("x:", participant.counter[x]);
+    if (participant.counter[x] == 3){
+      console.log(participant.name + " " + "has won!");
+      break;
+    }
+    
+    }
+  }
   
-  //Could have nested for loops, to check within each array that's nested in the "winning" array. Would be n^2
-  //Could create IDs that have grid coordinates and use that to check if adjecent squares are filled? But how to change DIV id to adjecent square?
-  //For non-diagonals, could check player/opponent array for keywords (top, left, bot, right, mid), if there are 3 of them in the array, then win. Not sure how to check for diagonals in this case. Seems inefficient to have a rule for checking horizontals/verticals and a separate for diagonals. 
-  //In terms of key-words, could just have a counter for keywords as space is chosen? If counter gets to 3, player/opponent wins? For diagonal, if each counter has 1, check to see if it's proper diagonal and not top-left, mid-right, bot-mid, for example. Create switch-case for each one to add to player/opponent.counter?
-  
-}
+
 
 function addCounter(divId, object){
   console.log('divId:', divId, 'object:', object);
   switch(divId){
     case 'top-left':
-      object.counterTop += 1;
-      object.counterLeft += 1;
+      object.counter.top += 1;
+      object.counter.left += 1;
       break;
     case 'top-mid':
-      object.counterTop += 1;
-      object.counterMidy += 1;
+      object.counter.top += 1;
+      object.counte.midy += 1;
       break;
     case 'top-right':
-      object.counterTop += 1;
-      object.counterRight += 1;
+      object.counter.top += 1;
+      object.counter.right += 1;
       break;
     case 'mid-left':
-      object.counterMidx += 1;
-      object.counterLeft += 1;
+      object.counter.midx += 1;
+      object.counter.left += 1;
       break;
     case 'mid-mid':
-      object.counterMidx += 1;
-      object.counterMidy += 1;
+      object.counter.midx += 1;
+      object.counter.midy += 1;
       break;
     case 'mid-right':
-      object.counterMidx += 1;
-      object.counterRight += 1;
+      object.counter.midx += 1;
+      object.counter.right += 1;
       break;
     case 'bot-left':
-      object.counterBot += 1;
-      object.counterLeft += 1;
+      object.counter.bot += 1;
+      object.counter.left += 1;
       break;
     case 'bot-mid':
-      object.counterMidy += 1;
-      object.counterBot += 1;
+      object.counter.midy += 1;
+      object.counter.bot += 1;
       break;
     case 'bot-right':
-      object.counterRight += 1;
-      object.counterBot += 1;
+      object.counter.right += 1;
+      object.counter.bot += 1;
       break;
   }
 }
