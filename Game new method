@@ -206,6 +206,7 @@ opponent.counter = {top : 0, midx: 0, midy: 0, bot: 0, left: 0, right: 0, diagon
 
 var turn = 'player';
 var available = ["top-left", "top-mid", "top-right", "mid-left", "mid-mid", "mid-right", "bot-left", "bot-mid", "bot-right"];
+var win;
 $('.win-overlay').hide();
 
 
@@ -261,6 +262,9 @@ $('.letter-choice').on("click touchend", function(){
       removeIndex(this.id);
       addCounter(this.id, player);
       check(player);
+      if (win == true){
+        return;
+      }
       console.log('available:', available);
       if (available.length == 0){
         console.log('tie-game!');
@@ -281,6 +285,9 @@ $('.letter-choice').on("click touchend", function(){
       document.getElementById(this.id).innerHTML = opponent.letter;
       addCounter(this.id, opponent);
       check(opponent);
+      if (win == true){
+        return;
+      }
       removeIndex(this.id);
       console.log('available:', available)
       if (available.length == 0){
@@ -306,6 +313,9 @@ function computerTurn(){
   document.getElementById(move).innerHTML = opponent.letter;
   addCounter(move, opponent);
   check(opponent);
+  if (win == true){
+    return;
+  }
   removeIndex(move);
   console.log('available:', available);
   if (available.length == 0){
@@ -330,7 +340,8 @@ function check(participant){
   for (var x in participant.counter){
     //console.log("x:", participant.counter[x]);
     if (participant.counter[x] == 3){
-      //console.log("someone won");
+      win = true;
+      console.log("someone won");
       document.getElementById('win').innerHTML = (participant.name + " " + "has won!");
       $('.win-overlay').show();
       break;
