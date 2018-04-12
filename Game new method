@@ -100,11 +100,16 @@ button{
 }
 
 .play{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
   background-color: white;
   width: 19vw;
   flex-wrap: wrap;
   border: solid black 1px;
   height: 19vw;
+  font-size: 19vw;
 }
 
 #title{
@@ -149,6 +154,7 @@ button{
   flex-wrap: wrap;
   border: solid black 1px;
   height: 11vw;
+  font-size: 11vw;
 }
 
 #title{
@@ -183,15 +189,15 @@ button{
   <div class = "flex-item" id = "title">
     <div class = "title">Tic-Tac-Toe</div>
   </div>
-  <div class = "flex-item play" id = "top-left">1</div>
-  <div class = "flex-item play" id = "top-mid">2</div>
-  <div class = "flex-item play" id = "top-right">3</div>
-  <div class = "flex-item play" id = "mid-left">4</div>
-  <div class = "flex-item play" id = "mid-mid">5</div>
-  <div class = "flex-item play" id = "mid-right">6</div>
-  <div class = "flex-item play" id = "bot-left">7</div>
-  <div class = "flex-item play" id = "bot-mid">8</div>
-  <div class = "flex-item play" id = "bot-right">9</div>
+  <div class = "flex-item play" id = "top-left"></div>
+  <div class = "flex-item play" id = "top-mid"></div>
+  <div class = "flex-item play" id = "top-right"></div>
+  <div class = "flex-item play" id = "mid-left"></div>
+  <div class = "flex-item play" id = "mid-mid"></div>
+  <div class = "flex-item play" id = "mid-right"></div>
+  <div class = "flex-item play" id = "bot-left"></div>
+  <div class = "flex-item play" id = "bot-mid"></div>
+  <div class = "flex-item play" id = "bot-right"></div>
 </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
