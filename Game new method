@@ -74,7 +74,7 @@
   right: 0;
   bottom: 0;
   font-size: 6vw;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 .win-message, .reset{
   color: white;
@@ -225,7 +225,7 @@ $('.win-overlay').hide();
 
 
 //Will choose how many players via button click
-$('.player-choice').on("click touchend", function(){
+$('.player-choice').on("click touchend", function(x){
   $(".overlay").hide();
   if (this.id == "1-player"){
     player.name = "Player";
@@ -234,11 +234,12 @@ $('.player-choice').on("click touchend", function(){
   if (this.id == "2-player"){
     player.name = 'Player-1';
     opponent.name = 'Player-2'
-  }  
+  }
+  x.preventDefault();
 })
 
 //Will choose which letter between X and O
-$('.letter-choice').on("click touchend", function(){
+$('.letter-choice').on("click touchend", function(x){
   $(".letter-overlay").hide();
   console.log(this.id);
   player.letter = this.id;
@@ -250,6 +251,7 @@ $('.letter-choice').on("click touchend", function(){
   }
   console.log('player:', player);
   console.log('opponent:', opponent);
+  x.preventDefault();
   })
 
 $('.reset').on("click touchend", function(){
@@ -263,8 +265,8 @@ $('.reset').on("click touchend", function(){
 
   //Will run check before moves occur.
   
-  $('.play').on("click touchend", function(){
-    
+  $('.play').on("click touchend", function(x){
+    x.preventDefault();
     //If div already contains letter, do nothing. 
     if (document.getElementById(this.id).innerHTML == "X" || document.getElementById(this.id).innerHTML == "O"){
       console.log("try again");
